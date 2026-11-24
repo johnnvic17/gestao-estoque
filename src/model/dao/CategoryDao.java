@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface CategoryDao {
     void insert(Category category);
-    List<Category> findByName(String name);
+    Category findByName(String name);
 }

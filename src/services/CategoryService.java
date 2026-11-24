@@ -20,13 +20,13 @@ public class CategoryService {
         }
 
         if (category.getName() == null || category.getName().isBlank()){
-            throw new IllegalArgumentException("Nome inválido!");
+            throw new IllegalArgumentException("Nome da categoria inválido!");
         }
 
         categoryDao.insert(category);
     }
 
-    public List<Category> findByName(String name){
+    public Category findByName(String name){
 
         if (name == null || name.isBlank()){
             throw new IllegalArgumentException("Nome inválido!");

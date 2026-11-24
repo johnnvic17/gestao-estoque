@@ -60,7 +60,7 @@ public class CategoryDaoJDBC implements CategoryDao {
     }
 
     @Override
-    public List<Category> findByName(String name) {
+    public Category findByName(String name) {
 
         PreparedStatement st = null;
         ResultSet rs = null;
@@ -74,15 +74,13 @@ public class CategoryDaoJDBC implements CategoryDao {
 
             rs = st.executeQuery();
 
-            List<Category> categories = new ArrayList<>();
-
-            while (rs.next()){
-                Category cat = new Category();
-                cat.setId(rs.getInt("Id"));
-                cat.setName(rs.getString("Name"));
-                categories.add(cat);
+            if (rs.next()){
+                Category category = new Category();
+                category.setId(rs.getInt("Id"));
+                category.setName(rs.getString("Name"));
+                return category;
             }
-            return categories;
+            return null;
 
         } catch (SQLException e){
             throw new DBException(e.getMessage());
